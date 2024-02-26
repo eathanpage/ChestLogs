@@ -12,7 +12,7 @@ public class Utils {
             return dateFormat.parse(timestamp);
         } catch (ParseException e) {
             e.printStackTrace();
-            return new Date(); // Return current date in case of parsing error
+            return new Date();
         }
     }
 }

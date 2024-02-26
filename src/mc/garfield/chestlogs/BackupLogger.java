@@ -25,23 +25,23 @@ public class BackupLogger {
         String fileName = "backup_log_" + currentDate + ".txt";
         File logsFolder = new File(Main.getPlugin(Main.class).getDataFolder(), "logs");
         if (!logsFolder.exists()) {
-            logsFolder.mkdirs(); // Create the "logs" folder if it doesn't exist
+            logsFolder.mkdirs();
         }
         File logFile = new File(logsFolder, fileName);
         try {
-            fileWriter = new FileWriter(logFile, true); // Append mode
+            fileWriter = new FileWriter(logFile, true);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
     public void log(String playerName, String dimension, int x, int y, int z) {
-        checkDate(); // Check if a new log file needs to be created
+        checkDate();
         String currentTime = new SimpleDateFormat("HH:mm").format(new Date());
         String logEntry = "[" + currentTime + "] - " + playerName + " - " + x + ", " + y + ", " + z + " - " + dimension + "\n";
         try {
             fileWriter.write(logEntry);
-            fileWriter.flush(); // Ensure the entry is written immediately
+            fileWriter.flush();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -50,9 +50,8 @@ public class BackupLogger {
     private void checkDate() {
         String newDate = getCurrentDate();
         if (!newDate.equals(currentDate)) {
-            // If the date has changed, create a new log file
             currentDate = newDate;
-            close(); // Close the current file writer
+            close();
             createNewLogFile();
         }
     }
