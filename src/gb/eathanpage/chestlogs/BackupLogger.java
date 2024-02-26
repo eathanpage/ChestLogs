@@ -1,5 +1,4 @@
-package mc.garfield.chestlogs;
-
+package gb.eathanpage.chestlogs;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;

@@ -1,4 +1,4 @@
-package mc.garfield.chestlogs;
+package gb.eathanpage.chestlogs;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
@@ -25,6 +25,7 @@ public class Main extends JavaPlugin implements Listener {
 
         getLogger().info("ChestLogs is now enabled");
         getServer().getPluginManager().registerEvents(this, this);
+        backupLogger = new BackupLogger();
         saveDefaultConfig();
         reloadConfig();
         logToConsole = getConfig().getBoolean("log-to-console", true);

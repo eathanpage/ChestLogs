@@ -1,10 +1,7 @@
-package mc.garfield.chestlogs;
+package gb.eathanpage.chestlogs;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.Date;
-import java.util.List;
 public class Utils {
     public static Date parseTimestamp(String timestamp) {
         SimpleDateFormat dateFormat = new SimpleDateFormat("E MMM dd HH:mm:ss z yyyy");
