@@ -7,14 +7,7 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="module-library">
-      <library>
-        <CLASSES>
-          <root url="jar://$USER_HOME$/Downloads/spigot-api-1.20.4-experimental-20240211.033404-1-shaded.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
+    <orderEntry type="library" name="google.code.gson" level="application" />
+    <orderEntry type="library" name="spigot-api-1.20.4-R0.1-20240217.030804-82-shaded" level="application" />
   </component>
 </module>
