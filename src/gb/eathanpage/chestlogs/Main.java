@@ -75,10 +75,10 @@ public class Main extends JavaPlugin implements Listener {
                         displayLogEntries(player, x, y, z, dimension);
                         event.setCancelled(true);
                     } catch (NumberFormatException e) {
-                        player.sendMessage("Invalid coordinates.");
+                        player.sendMessage("§4Invalid coordinates.");
                     }
                 } else {
-                    player.sendMessage("You must specify coordinates.");
+                    player.sendMessage("§4You must specify coordinates.");
                 }
             }
         }
@@ -158,12 +158,12 @@ public class Main extends JavaPlugin implements Listener {
 
         List<LogEntry> logEntries = loadLogEntries(x, y, z, dimension.toLowerCase());
         if (logEntries.isEmpty()) {
-            player.sendMessage("No log entries found for the specified coordinates in dimension " + dimension + ".");
+            player.sendMessage("§6No log entries found for the specified coordinates in the " + dimension+ " dimension:");
         } else {
             logEntries.sort(Comparator.comparing(entry -> Utils.parseTimestamp(entry.timestamp())));
             Collections.reverse(logEntries);
             int count = Math.min(logEntries.size(), 5);
-            player.sendMessage("Last 5 log entries for chest at (" + x + ", " + y + ", " + z + ") in dimension " + dimension + ":");
+            player.sendMessage("§3Last 5 log entries for chest at (" + x + ", " + y + ", " + z + ") in the " + dimension+ " dimension:");
             for (int i = count - 1; i >= 0; i--) {
                 LogEntry logEntry = logEntries.get(i);
                 if (logEntry != null) {

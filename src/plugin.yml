@@ -1,9 +1,9 @@
 name: ChestLogs
-version: 1.0.1
+version: 1.1.0
 author: Eathan Page
 main: gb.eathanpage.chestlogs.Main
 api-version: 1.20
 commands:
   chestlog:
     description: Display last 5 log entries for a specific chest coordinate
-    usage: /chestlog <x> <y> <z> <dimension>
+    usage: "usage: /chestlog [x] [y] [z] [dimension]"
