@@ -52,19 +52,34 @@ public class Main extends JavaPlugin implements Listener {
     public void onCommand(PlayerCommandPreprocessEvent event) {
         String message = event.getMessage();
         String[] args = message.split(" ");
-        if (args.length >= 4 && args[0].equalsIgnoreCase("/chestlog")) {
-            try {
-                int x = Integer.parseInt(args[1]);
-                int y = Integer.parseInt(args[2]);
-                int z = Integer.parseInt(args[3]);
-                String dimension = "";
-                if (args.length >= 5) {
-                    dimension = args[4];
-                }
-                displayLogEntries(event.getPlayer(), x, y, z, dimension);
+
+        if (args[0].equalsIgnoreCase("/chestlog")) {
+            Player player = event.getPlayer();
+            Block targetBlock = player.getTargetBlock(null, 5); // 5 is the maximum distance to check
+
+            if (targetBlock != null && (targetBlock.getState() instanceof Chest || targetBlock.getState() instanceof Barrel)) {
+                // If the player is looking at a chest or barrel
+                displayLogEntries(player, targetBlock.getX(), targetBlock.getY(), targetBlock.getZ(), getDimension(targetBlock.getWorld().getName()));
                 event.setCancelled(true);
-            } catch (NumberFormatException e) {
-                event.getPlayer().sendMessage("Invalid coordinates.");
+            } else {
+                // If the player is not looking at a chest or barrel, require coordinates
+                if (args.length >= 4) {
+                    try {
+                        int x = Integer.parseInt(args[1]);
+                        int y = Integer.parseInt(args[2]);
+                        int z = Integer.parseInt(args[3]);
+                        String dimension = "";
+                        if (args.length >= 5) {
+                            dimension = args[4];
+                        }
+                        displayLogEntries(player, x, y, z, dimension);
+                        event.setCancelled(true);
+                    } catch (NumberFormatException e) {
+                        player.sendMessage("Invalid coordinates.");
+                    }
+                } else {
+                    player.sendMessage("You must specify coordinates.");
+                }
             }
         }
     }
@@ -192,6 +207,6 @@ public class Main extends JavaPlugin implements Listener {
         long elapsedTime = currentTime - timestamp;
         long hours = elapsedTime / (60 * 60 * 1000);
         long minutes = (elapsedTime % (60 * 60 * 1000)) / (60 * 1000);
-        return entry.playerName() + " - " + hours + " hours " + minutes + " minutes ago - " + entry.dimension();
+        return entry.playerName() + " - " + hours + " hours " + minutes + " minutes ago";
     }
 }
